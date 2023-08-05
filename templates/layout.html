@@ -1,26 +1,61 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns:th="https://www.thymeleaf.org"
-  th:fragment="html (head,content)"
->
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=2"
-    />
-    <title th:text="${site.title}"></title>
-    <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
-    <script th:src="@{/assets/js/main.js}"></script>
-    <th:block th:if="${head != null}">
-      <th:block th:replace="${head}" />
-    </th:block>
-  </head>
-  <body th:style="'background-color: '+${theme.config.style.background_color ?: '#f2f2f2'}">
-    <section>
-      <th:block th:replace="${content}" />
-    </section>
+<html lang="zh" xmlns:th="https://www.thymeleaf.org" th:fragment="html (head,content)">
+
+<head>
+	<meta charset="UTF-8" />
+	<!-- IE 8浏览器的页面渲染方式 & 默认使用极速内核：针对国内浏览器产商 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<!-- 自适应 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+	<!-- 关闭百度转码 -->
+	<meta http-equiv="x-dns-prefetch-control" content="on">
+	<meta http-equiv="Cache-Control" content="no-transform">
+	<meta http-equiv="Cache-Control" content="no-siteapp">
+	<title th:text="${site.title}"></title>
+	<link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/normalize/8.0.1/normalize.min.css" />
+	<link rel="stylesheet" href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/bigfoot/2.1.4/bigfoot-default.min.css" />
+	<link rel="stylesheet" href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/prism/1.27.0/themes/prism.min.css" />
+	<link rel="stylesheet" href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/prism/1.27.0/plugins/toolbar/prism-toolbar.min.css" />
+	<link rel="stylesheet" href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/prism/1.27.0/plugins/line-numbers/prism-line-numbers.min.css" />
+	<link rel="stylesheet" href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/fluidbox/2.0.5/css/fluidbox.min.css" />
+	<link rel="stylesheet" href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/tocbot/4.18.2/tocbot.css" />
+	<link rel="stylesheet" th:href="@{/assets/toaster/toaster.css?v={version}(version=${theme.spec.version})}" />
+	<link rel="stylesheet" th:href="@{/assets/matcha/matcha.css?v={version}(version=${theme.spec.version})}" />
+	<style th:inline="text">
+		@font-face {
+			font-family: 'iconfont';
+			src: url('[[@{/assets/iconfont/iconfont.woff2}]]') format('woff2'),
+			url('[[@{/assets/iconfont/iconfont.woff}]]') format('woff'),
+			url('[[@{/assets/iconfont/iconfont.ttf}]]') format('truetype');
+		}
+		
+		:root {
+			--theme-color: #c5c56a;
+		}
+	</style>
+	<th:block th:if="${head != null}">
+		<th:block th:replace="${head}" />
+	</th:block>
+</head>
+
+<body>
+	<th:block th:replace="~{modules/header}" />
+            <th:block th:replace="${content}" />
+    <footer id="script">
+        <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+        <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery.lazy/1.7.11/jquery.lazy.min.js"></script>
+        <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/bigfoot/2.1.4/bigfoot.min.js"></script>
+        <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+        <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/fluidbox/2.0.5/js/jquery.fluidbox.min.js"></script>
+        <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/tocbot/4.18.2/tocbot.min.js"></script>
+        <script th:src="@{/assets/prism/prism.js}"></script>
+        <script th:src="@{/assets/toaster/toaster.js}"></script>
+        <script th:src="@{/assets/smoothscroll/smoothscroll.js}"></script>
+        <script th:src="@{/assets/matcha/matcha.comment.js}"></script>
+        <script th:src="@{/assets/matcha/matcha.js}"></script>
+        <script src="//cdn.staticfile.org/instant.page/5.1.1/instantpage.min.js" type="module" defer=""></script>
+    </footer>
   </body>
 </html>

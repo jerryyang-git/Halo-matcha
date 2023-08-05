@@ -1,17 +1,17 @@
 apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
-  name: theme-starter
+  name: theme-matcha
 spec:
-  displayName: Theme Starter
+  displayName: matcha
   author:
-    name: halo-dev
-    website: "https://halo.run"
-  description: Halo 2.0 Theme base on Thymeleaf
+    name: Jerry
+    website: "https://www.jerryyang.link/"
+  description: Halo version of typecho matcha theme
   logo: "https://halo.run/logo"
   website: "https://halo.run"
   repo: "https://github.com/halo-sigs/theme-starter"
-  settingName: "theme-starter-setting"
-  configMapName: "theme-starter-configMap"
+  settingName: "theme-matcha-setting"
+  configMapName: "theme-matcha-configMap"
   version: "1.0"
   require: "*"

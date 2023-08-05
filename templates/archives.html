@@ -4,23 +4,43 @@
   th:replace="~{layout :: html(head = null,content = ~{::content})}"
 >
   <th:block th:fragment="content">
+    
+<div class="container with-shrunk-nav">
+    <h2>标签云</h2>
+    <ul>
+      <li th:each="tag : ${tags}">
+        <a
+          th:href="@{${tag.status.permalink}}"
+          th:text="${tag.spec.displayName}"
+        ></a>
+      </li>
+    </ul>
+  </th:block>
+  <th:block th:fragment="content">
     <th:block th:each="archive : ${archives.items}">
-      <h1 th:text="${archive.year}"></h1>
-      <ul class="listing">
+      <h2 class="archive-year" th:text="${archive.year}"></h2>
+      <ol class="archive-list">
         <th:block th:each="month : ${archive.months}">
-          <li th:each="post : ${month.posts}">
+          <li class="archive-item" th:each="post : ${month.posts}">
             <a
               th:href="@{${post.status.permalink}}"
               th:title="${post.spec.title}"
-              th:text="${post.spec.title}"
-            ></a>
+              class="no-line"
+            >
+            <samp class="archive-date" th:text="${#strings.substring(post.metadata.creationTimestamp, 5, 10)}"></samp>
+            <samp th:text="${post.spec.title}"></samp></a>
           </li>
         </th:block>
-      </ul>
+      </ol>
     </th:block>
     <a th:if="${archives.hasPrevious()}" th:href="@{${archives.prevUrl}}">
       上一页
     </a>
-    <a th:if="${archives.hasNext()}" th:href="@{${archives.nextUrl}}">下一页</a>
+    <span id="next">
+    <a th:if="${archives.hasNext()}" th:href="@{${archives.nextUrl}}"></a>
+      <span class="iconfont"></span>
+    </span>
+    
+</div>
   </th:block>
 </html>
